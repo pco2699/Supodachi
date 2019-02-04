@@ -1,16 +1,12 @@
 <template>
   <v-ons-page>
-    <p style="text-align: center">
-      <v-ons-button @click="$ons.notification.alert('Hello World!')">Click me!</v-ons-button>
-    </p>
     <v-ons-tabbar
       swipeable
       position="auto"
       :tabs="tabs"
       :visible="true"
       :index.sync="activeIndex"
-    >
-    </v-ons-tabbar>
+    />
   </v-ons-page>
 </template>
 

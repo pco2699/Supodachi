@@ -15,10 +15,13 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^2.6.0",
+    "core-js": "^2.6.3",
     "cross-env": "^5.2.0",
     "nuxt": "^2.3.4",
+    "nuxt-leaflet": "^0.0.13",
     "onsenui": "^2.10.6",
-    "vue-onsenui": "^2.6.2"
+    "vue-onsenui": "^2.6.2",
+    "vue2-google-maps": "^0.10.5"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",
