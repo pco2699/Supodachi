@@ -36,5 +36,8 @@
     "eslint-plugin-vue": "^5.0.0",
     "nodemon": "^1.18.9",
     "prettier": "1.14.3"
+  },
+  "resolutions": {
+    "terser": "3.14.*"
   }
 }
