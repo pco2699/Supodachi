@@ -1,0 +1,13 @@
+{
+  "name": "supodachi-api-docs",
+  "private": true,
+  "scripts": {
+    "api:build": "aglio --theme-variables slate -i src/index.md -o html/index.html",
+    "api:preview": "aglio --theme-variables slate -i src/index.md -p 3010 --server",
+    "api:mock": "drakov -f 'src/index.md' -p 3011 --watch "
+  },
+  "dependencies": {
+    "aglio": "^2.3.0",
+    "drakov": "^1.0.4"
+  }
+}
