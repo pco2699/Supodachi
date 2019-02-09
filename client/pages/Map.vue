@@ -1,13 +1,17 @@
 <template>
   <v-ons-page>
     <GmapMap
-      :center="markerCenter"
-      :zoom="7"
+      ref="google_map"
+      :center="currentLoc"
+      :zoom="16"
       map-type-id="terrain"
       style="width: 100%; height: 100%"
-      :options="{disableDefaultUI: true}"
+      :options="{disableDefaultUI: true, clickableIcons: false}"
       @click="onMapClick"
     >
+      <gmap-custom-marker :marker="currentLoc">
+        <current-marker />
+      </gmap-custom-marker>
       <gmap-custom-marker
         v-for="(marker, i) in markers"
         :key="marker._id"
@@ -17,10 +21,8 @@
         @click.native="deleteMarker(i)"
       >
         <facility-marker v-if="marker.weather" :coords="marker" />
-        <img v-else :title="JSON.stringify(marker)" class="icon-sm" :src="src" height="45">
       </gmap-custom-marker>
     </GmapMap>
-    <facility-card />
     <facility-card />
   </v-ons-page>
 </template>
@@ -29,13 +31,15 @@
 import GmapCustomMarker from 'vue2-gmap-custom-marker'
 import FacilityMarker from '../components/FacilityMarker'
 import FacilityCard from '../components/FacilityCard'
+import CurrentMarker from '../components/CurrentMarker'
 
 export default {
   name: 'Map',
   components: {
     FacilityCard,
     GmapCustomMarker,
-    FacilityMarker
+    FacilityMarker,
+    CurrentMarker
   },
   data() {
     return {
@@ -43,6 +47,10 @@ export default {
       markerCenter: {
         lat: 50.6272265,
         lng: 3.0571581
+      },
+      currentLoc: {
+        lat: 35.658034,
+        lng: 139.701636
       },
       addWeather: true,
       addMode: false,
@@ -55,6 +63,13 @@ export default {
     src() {
       return this.testText ? this.testText : 'https://vuejs.org/images/logo.png'
     }
+  },
+  created() {
+    navigator.geolocation.getCurrentPosition(data => {
+      this.currentLoc.lat = data.coords.latitude
+      this.currentLoc.lng = data.coords.longitude
+      // this.$refs.google_map.panTo(this.currentLocation)
+    })
   },
   methods: {
     deleteMarker(i) {

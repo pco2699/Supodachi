@@ -1,5 +1,5 @@
 <template>
-  <span class="facility-card">
+  <span class="facility-marker">
     空
   </span>
 </template>
@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style scoped>
-.facility-card {
+.facility-marker {
   display: inline-block;
 
   width: 40px;
