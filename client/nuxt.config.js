@@ -50,6 +50,8 @@ module.exports = {
     // See https://github.com/nuxt-community/axios-module#options
   },
 
+  env: { map_apikey: process.env.MAP_APIKEY },
+
   /*
   ** Build configuration
   */

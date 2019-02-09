@@ -1,7 +1,6 @@
 <template>
   <v-ons-page>
     <v-ons-tabbar
-      swipeable
       position="auto"
       :tabs="tabs"
       :visible="true"
