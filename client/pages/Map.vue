@@ -6,22 +6,24 @@
       :zoom="16"
       map-type-id="terrain"
       style="width: 100%; height: 100%"
-      :options="{disableDefaultUI: true, clickableIcons: false}"
+      :options="{disableDefaultUI: true, clickableIcons: false, gestureHandling: 'greedy'}"
       @click="onMapClick"
     >
-      <gmap-custom-marker :marker="currentLoc">
-        <current-marker />
-      </gmap-custom-marker>
-      <gmap-custom-marker
-        v-for="(marker, i) in markers"
-        :key="marker._id"
-        :delay-repaint="marker.weather ? 250 : 0"
-        :marker="marker"
-        :alignment="marker.alignment"
-        @click.native="deleteMarker(i)"
-      >
-        <facility-marker v-if="marker.weather" :coords="marker" />
-      </gmap-custom-marker>
+      <no-ssr>
+        <gmap-custom-marker :marker="currentLoc">
+          <current-marker />
+        </gmap-custom-marker>
+        <gmap-custom-marker
+          v-for="(marker, i) in markers"
+          :key="marker._id"
+          :delay-repaint="marker.weather ? 250 : 0"
+          :marker="marker"
+          :alignment="marker.alignment"
+          @click.native="deleteMarker(i)"
+        >
+          <facility-marker v-if="marker.weather" :coords="marker" />
+        </gmap-custom-marker>
+      </no-ssr>
     </GmapMap>
     <facility-card />
   </v-ons-page>
@@ -36,8 +38,8 @@ import CurrentMarker from '../components/CurrentMarker'
 export default {
   name: 'Map',
   components: {
-    FacilityCard,
     GmapCustomMarker,
+    FacilityCard,
     FacilityMarker,
     CurrentMarker
   },

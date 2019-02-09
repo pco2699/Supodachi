@@ -1,7 +1,7 @@
 const pkg = require('./package')
 
 module.exports = {
-  mode: 'spa',
+  mode: 'universal',
 
   /*
   ** Headers of the page
@@ -30,7 +30,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/vue-onsenui.js' },
+    { src: '~/plugins/vue-onsenui.js', ssr: false },
     { src: '~/plugins/vue2-google-maps', ssr: true }
   ],
 
@@ -40,8 +40,7 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',
-    'nuxt-leaflet'
+    '@nuxtjs/pwa'
   ],
   /*
   ** Axios module configuration
@@ -56,7 +55,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: ['vue-onsenui', 'vue2-google-maps'],
+    vendor: ['vue-onsenui'],
     transpile: [/^vue2-google-maps($|\/)/],
     /*
     ** You can extend webpack config here
