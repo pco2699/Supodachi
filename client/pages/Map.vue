@@ -9,21 +9,19 @@
       :options="{disableDefaultUI: true, clickableIcons: false, gestureHandling: 'greedy'}"
       @click="onMapClick"
     >
-      <no-ssr>
-        <gmap-custom-marker :marker="currentLoc">
-          <current-marker />
-        </gmap-custom-marker>
-        <gmap-custom-marker
-          v-for="(marker, i) in markers"
-          :key="marker._id"
-          :delay-repaint="marker.weather ? 250 : 0"
-          :marker="marker"
-          :alignment="marker.alignment"
-          @click.native="deleteMarker(i)"
-        >
-          <facility-marker v-if="marker.weather" :coords="marker" />
-        </gmap-custom-marker>
-      </no-ssr>
+      <gmap-custom-marker :marker="currentLoc">
+        <current-marker />
+      </gmap-custom-marker>
+      <gmap-custom-marker
+        v-for="(marker, i) in markers"
+        :key="marker._id"
+        :delay-repaint="marker.weather ? 250 : 0"
+        :marker="marker"
+        :alignment="marker.alignment"
+        @click.native="deleteMarker(i)"
+      >
+        <facility-marker v-if="marker.weather" :coords="marker" />
+      </gmap-custom-marker>
     </GmapMap>
     <facility-card />
   </v-ons-page>
@@ -38,10 +36,10 @@ import CurrentMarker from '../components/CurrentMarker'
 export default {
   name: 'Map',
   components: {
-    GmapCustomMarker,
     FacilityCard,
     FacilityMarker,
-    CurrentMarker
+    CurrentMarker,
+    GmapCustomMarker
   },
   data() {
     return {

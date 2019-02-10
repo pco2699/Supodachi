@@ -5,5 +5,7 @@ import 'onsenui/css/onsen-css-components.css'
 // JS import
 import Vue from 'vue'
 
-const VueOnsen = require('vue-onsenui')
-Vue.use(VueOnsen)
+if (process.browser) {
+  const VueOnsen = require('vue-onsenui')
+  Vue.use(VueOnsen)
+}

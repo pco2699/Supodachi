@@ -30,7 +30,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/vue-onsenui.js', ssr: false },
+    { src: '~/plugins/vue-onsenui.js' },
     { src: '~/plugins/vue2-google-maps', ssr: true }
   ],
 
@@ -55,8 +55,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: ['vue-onsenui'],
-    transpile: [/^vue2-google-maps($|\/)/],
+    transpile: [/^vue2-google-maps($|\/)|^vue2-gmap-custom-marker($|\/)/],
     /*
     ** You can extend webpack config here
     */
