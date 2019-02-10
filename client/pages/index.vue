@@ -1,13 +1,11 @@
 <template>
   <v-ons-page>
-    <no-ssr>
-      <v-ons-tabbar
-        position="auto"
-        :tabs="tabs"
-        :visible="true"
-        :index.sync="activeIndex"
-      />
-    </no-ssr>
+    <v-ons-tabbar
+      position="auto"
+      :tabs="tabs"
+      :visible="true"
+      :index.sync="activeIndex"
+    />
   </v-ons-page>
 </template>
 
