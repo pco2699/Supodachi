@@ -2,7 +2,7 @@
   <v-ons-card class="facility-card">
     <img alt="SportsFacility" src="https://via.placeholder.com/120x80.png?text=No Image" width="120" height="80">
     <div class="title">
-      赤羽スポーツ館
+      {{ title }}
     </div>
     <div class="price">
       \1900/1h
@@ -15,7 +15,13 @@
 
 <script>
 export default {
-  name: 'FacilityCard'
+  name: 'FacilityCard',
+  props: {
+    title: {
+      type: String,
+      default: 'No Title'
+    }
+  }
 }
 </script>
 
@@ -24,10 +30,6 @@ export default {
   border: solid 5px #f00660;
 
   font-size: 12px;
-  position: absolute;
-  bottom: 12px;
-  left: 2%;
-  z-index: 1000;
   width: 160px;
   height: 185px;
 
