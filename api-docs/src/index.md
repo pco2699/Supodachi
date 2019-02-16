@@ -1,6 +1,6 @@
 FORMAT: 1A
 
-# 周辺スポーツ施設 [/api/v1/map?location_name={location_name}&date={date}&event={event}]
+# 周辺スポーツ施設 [/api/v1/map?location_name={location_name}&date={date}&time={time}&event={event}]
 ## スポーツ施設に関する情報を取得 [GET]
 対象地点の周辺にあるスポーツ施設の場所や施設予約状況などを取得する
 
@@ -25,6 +25,7 @@ FORMAT: 1A
         {
             "location_name" : "渋谷",
             "date" : "2019-02-03",
+            "time" : "14:00",
             "event" : "basketball",
         }
 
@@ -58,9 +59,7 @@ FORMAT: 1A
 + lng: 139.711963 (number, required) - 経度
 
 ## Availabilities (array[object])
-+ object (Availability1)
 + object (Availability2)
-+ object (Availability3)
 
 ## Availability1 (object)
 + start: `8:30` (string) - 開始時刻
@@ -83,5 +82,5 @@ FORMAT: 1A
 + type: `室内` (string) - 施設区分
 
 ## Cost (object)
-+ amount: 4500 (number, required) - 費用
-+ unit_of_use: `午前（9:00～13:00）` (string) - 使用単位
++ amount: 4000 (number, required) - 費用
++ unit_of_use: `2時間` (string) - 使用単位
