@@ -1,6 +1,6 @@
 FORMAT: 1A
 
-# 周辺スポーツ施設 [/map?location_name={location_name}&date={date}&start_at={start_at}&end_at={end_at}&event={event}&number_of_people={number_of_people}]
+# 周辺スポーツ施設 [/api/v1/map?location_name={location_name}&date={date}&event={event}]
 ## スポーツ施設に関する情報を取得 [GET]
 対象地点の周辺にあるスポーツ施設の場所や施設予約状況などを取得する
 
@@ -19,21 +19,13 @@ FORMAT: 1A
 + Parameters
     + location_name: `渋谷` (string, required) - 地域名
     + date: `2019-02-03` (string, required) - 日付
-    + start_at: `10:00` (string) - 開始時刻
-        + Default: `0:00`
-    + end_at: `18:00` (string) - 終了時刻
-        + Default: `23:59`
     + event: `basketball` (string) - 種目
-    + number_of_people: 3 (number) - 人数
 
 + Request
         {
             "location_name" : "渋谷",
             "date" : "2019-02-03",
-            "start_at" : "10:00",
-            "end_at" : "18:00",
             "event" : "basketball",
-            "number_of_people" : 3
         }
 
     + Headers
@@ -57,7 +49,7 @@ FORMAT: 1A
 ## Facility1 (object)
 + basic_info (array[BasicInfo]) - 基本情報
 + location (array[Location]) - 位置情報
-+ time_period (array[TimePeriod]) - 利用時間
++ availabilities (array[Availabilities]) - 空き状況
 + cost (array[Cost]) - 利用料金
 + picture_url: `http://example.com/` (string) - イメージ
 
@@ -65,9 +57,25 @@ FORMAT: 1A
 + lat: 35.679396 (number, required) - 緯度
 + lng: 139.711963 (number, required) - 経度
 
-## TimePeriod (object)
+## Availabilities (array[object])
++ object (Availability1)
++ object (Availability2)
++ object (Availability3)
+
+## Availability1 (object)
 + start: `8:30` (string) - 開始時刻
 + end: `10:30` (string) - 終了時刻
++ remaining_slots: `２コート` (string) - 残り枠
+
+## Availability2 (object)
++ start: `12:30` (string) - 開始時刻
++ end: `14:30` (string) - 終了時刻
++ remaining_slots: `余裕あり` (string) - 残り枠
+
+## Availability3 (object)
++ start: `14:30` (string) - 開始時刻
++ end: `16:30` (string) - 終了時刻
++ remaining_slots: `1コート` (string) - 残り枠
 
 ## BasicInfo (object)
 + name: `東京体育館` (string) - 施設名

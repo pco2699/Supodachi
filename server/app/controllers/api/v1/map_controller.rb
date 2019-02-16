@@ -1,0 +1,2 @@
+class MapController
+end

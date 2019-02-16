@@ -1,0 +1,2 @@
+class Facility
+end
