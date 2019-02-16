@@ -1,2 +1,2 @@
-class Facility
+class Facility < ApplicationRecord
 end
