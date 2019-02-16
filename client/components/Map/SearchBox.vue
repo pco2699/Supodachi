@@ -13,18 +13,14 @@
     </v-ons-row>
     <v-ons-row class="search-item">
       <v-ons-col>
-        <v-ons-icon class="icon" icon="fa-futbol" />
-        <v-ons-input
-          class="genre input"
-          placeholder="競技で検索"
-          modifier="underbar"
-          float
-        />
+        <v-ons-icon class="switch-icon" icon="fa-futbol" size="30px" />
+        <v-ons-icon class="switch-icon" icon="fa-futbol" size="30px" />
+        <v-ons-icon class="switch-icon" icon="fa-futbol" size="30px" />
       </v-ons-col>
     </v-ons-row>
     <v-ons-row class="search-item">
       <v-ons-col>
-        <v-ons-range v-model="volume" style="width: 35%;" />
+        <input type="range" class="time-range">
       </v-ons-col>
     </v-ons-row>
   </div>
@@ -32,11 +28,26 @@
 
 <script>
 export default {
-  name: 'SearchBox'
+  name: 'SearchBox',
+  data() {
+    return {
+      selected: 0
+    }
+  },
+  methods: {}
 }
 </script>
 
 <style scoped>
+.selected {
+  border-color: orangered;
+}
+.switch-icon {
+  padding: 2px;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: #7f828b;
+}
 .search-box {
   position: absolute;
   z-index: 1000;
