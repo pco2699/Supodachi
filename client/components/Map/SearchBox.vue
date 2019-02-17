@@ -91,7 +91,7 @@ export default {
       // if (pickedDate) dateVal = Date(pickedDate[0])
       // if (pickedDate) dateVal = Date(pickedDate)
       axios
-        .get('http://127.0.0.1:3100/api/v1/map', {
+        .get('/api/v1/map', {
           headers: {
             'Access-Control-Allow-Origin': '*',
             Authorization: 'Bearer ' + 'hogehoge'
