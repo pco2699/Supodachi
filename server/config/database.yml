@@ -33,4 +33,4 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  url: <%= ENV['CLEARDB_DATABASE_URL'] %>
