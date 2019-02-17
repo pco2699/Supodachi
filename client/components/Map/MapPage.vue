@@ -1,5 +1,6 @@
 <template>
   <v-ons-page>
+    <SearchBox @callSetPin="setPin" />
     <GmapMap
       ref="google_map"
       :center="currentLoc"
@@ -7,7 +8,6 @@
       map-type-id="terrain"
       style="width: 100%; height: 100%"
       :options="{disableDefaultUI: true, clickableIcons: false, gestureHandling: 'greedy'}"
-      @click="onMapClick"
     >
       <gmap-custom-marker :marker="currentLoc">
         <current-marker />
@@ -17,10 +17,18 @@
         :key="marker._id"
         :marker="marker"
         :alignment="marker.alignment"
-        @click.native="deleteMarker(i)"
+        @click="toggleInfoWindow(marker, i)"
       >
         <Pin />
       </gmap-custom-marker>
+      <gmap-info-window
+        :options="infoOptions"
+        :position="infoWindowPos"
+        :opened="infoWinOpen"
+        @closeclick="infoWinOpen=false"
+      >
+        <div>{{ infoContent }}</div>
+      </gmap-info-window>
     </GmapMap>
     <search-box />
   </v-ons-page>
@@ -55,7 +63,20 @@ export default {
       addMode: false,
       markers: [],
       ids: 0,
-      alignment: 'top'
+      alignment: 'top',
+      infoContent: '',
+      infoWindowPos: {
+        lat: 0,
+        lng: 0
+      },
+      infoWinOpen: false,
+      currentMidx: null,
+      infoOptions: {
+        pixelOffset: {
+          width: 0,
+          height: -35
+        }
+      }
     }
   },
   computed: {
@@ -76,11 +97,57 @@ export default {
     deleteMarker(i) {
       this.markers.splice(i, 1)
     },
+    toggleInfoWindow: function(marker, idx) {
+      console.log('aaaaaaaaaa')
+      this.infoWindowPos = marker.position
+      this.infoContent = this.getInfoWindowContent(marker)
+
+      // check if its the same marker that was selected if yes toggle
+      if (this.currentMidx === idx) {
+        this.infoWinOpen = !this.infoWinOpen
+      }
+      // if different marker set infowindow to open and reset current marker index
+      else {
+        this.infoWinOpen = true
+        this.currentMidx = idx
+      }
+    },
+    getInfoWindowContent: function(marker) {
+      return `<div class="card">
+           <div class="card-image">
+             <figure class="image is-4by3">
+               <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+             </figure>
+           </div>
+           <div class="card-content">
+             <div class="media">
+               <div class="media-content">
+                 <p class="title is-4">${marker.name}</p>
+               </div>
+             </div>
+             <div class="content">
+               ${marker.description}
+               <br>
+               <time datetime="2016-1-1">${marker.date_build}</time>
+             </div>
+           </div>
+        </div>`
+    },
     onMapClick(event) {
       this.markers.push({
         _id: this.ids++,
         latitude: event.latLng.lat(),
         longitude: event.latLng.lng(),
+        weather: this.addWeather,
+        alignment: 'top'
+      })
+    },
+    setPin(facility) {
+      console.log('ccc')
+      this.markers.push({
+        _id: this.ids++,
+        latitude: facility.lat,
+        longitude: facility.lon,
         weather: this.addWeather,
         alignment: 'top'
       })

@@ -2,7 +2,7 @@
   <div class="search-box">
     <v-ons-row class="search-item">
       <v-ons-col>
-        <v-ons-icon class="icon" icon="fa-search" />
+        <img src="../../assets/pinB.png" width="15px" alt="">
         <v-ons-input
           class="input station"
           placeholder="駅で検索"
@@ -14,9 +14,9 @@
     </v-ons-row>
     <v-ons-row class="search-item">
       <v-ons-col>
-        <v-ons-icon class="switch-icon" icon="fa-futbol" size="30px" />
-        <v-ons-icon class="switch-icon" icon="fa-futbol" size="30px" />
-        <v-ons-icon class="switch-icon" icon="fa-futbol" size="30px" />
+        <img src="../../assets/T-gr.png" width="40px" alt="">
+        <img src="../../assets/B-red.png" width="40px" alt="">
+        <img src="../../assets/S-gr.png" width="40px" alt="">
       </v-ons-col>
     </v-ons-row>
     <v-ons-row>
@@ -24,7 +24,9 @@
     </v-ons-row>
     <v-ons-row class="search-item">
       <v-ons-col>
-        <flat-pickr v-model="date" @on-change="request" />
+        <img src="../../assets/calendar.png" width="15px" alt="">
+        <!--<flat-pickr v-model="date" class="text-input&#45;&#45;underbar" @on-change="request" />-->
+        <flat-pickr v-model="date" class="text-input--underbar" @on-change="$emit('callSetPin')" />
       </v-ons-col>
     </v-ons-row>
     <v-ons-row class="search-item">
@@ -84,8 +86,7 @@ export default {
         }
       }, 300)
     },
-    // request: function(pickedDate) {
-    request: function(pickedDate) {
+    request: function() {
       // let dateVal = new Date()
       // if (pickedDate) dateVal = Date(pickedDate[0])
       // if (pickedDate) dateVal = Date(pickedDate)
@@ -96,11 +97,16 @@ export default {
             Authorization: 'Bearer ' + 'hogehoge'
           },
           params: {
+            location: '田町駅',
             date: this.date
           }
         })
         .then(response => {
-          this.facilities = response.data
+          console.log(response.data.length)
+          this.facilities = response.data[0].lat
+          for (let i = 0; i < response.data.length; i++) {
+            this.$emit('callSetPin', response.data[i])
+          }
         })
     }
   }
