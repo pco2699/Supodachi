@@ -1,6 +1,20 @@
 # Export Shema
 create_table "facilities", force: :cascade do |t|
+  t.string   "name",            limit: 255
+  t.string   "administrator",   limit: 255
+  t.decimal  "lat",                           precision: 11, scale: 8
+  t.decimal  "lon",                           precision: 11, scale: 8
+  t.text     "homepage_url",    limit: 65535
+  t.text     "reservation_url", limit: 65535
+  t.datetime "created_at",      null:false
+  t.datetime "updated_at",      null:false
+end
+
+create_table "locations", force: :cascade do |t|
   t.string   "name",       limit: 255
+  t.string   "type",       limit: 255
+  t.decimal  "lat",                                precision: 11, scale: 8
+  t.decimal  "lon",                                precision: 11, scale: 8
   t.datetime "created_at",             null:false
   t.datetime "updated_at",             null:false
 end
