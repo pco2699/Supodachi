@@ -1,6 +1,6 @@
 const pkg = require('./package')
 
-require('dotenv').config();
+require('dotenv').config()
 
 module.exports = {
   mode: 'universal',
@@ -42,8 +42,7 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',
-    'nuxt-svg'
+    '@nuxtjs/pwa'
   ],
   /*
   ** Axios module configuration
