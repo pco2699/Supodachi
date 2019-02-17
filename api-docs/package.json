@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "api:build": "aglio --theme-variables slate -i src/index.md -o html/index.html",
-    "api:preview": "aglio --theme-variables slate -i src/index.md -p 3010 --server",
-    "api:mock": "drakov -f 'src/index.md' -p 3011 --watch "
+    "api:preview": "aglio --theme-variables slate -i src/index.md -p 3110 --server",
+    "api:mock": "drakov -f 'src/index.md' -p 3111 --watch "
   },
   "dependencies": {
     "aglio": "^2.3.0",
