@@ -1,7 +1,7 @@
 version: 2
 jobs:
   deployFrontEnd:
-    machine:
+    docker:
       image: circleci/classic:edge
     steps:
       - checkout
@@ -56,12 +56,3 @@ jobs:
       - run:
           name: heroku maintenance off
           command: heroku maintenance:off --app ${HEROKU_BACK_APP_NAME}
-workflows:
-  version: 2
-  build_and_deploy:
-    jobs:
-      - deployFrontEnd
-      - deployBackEnd
-          filters:
-            branches:
-              only: master
