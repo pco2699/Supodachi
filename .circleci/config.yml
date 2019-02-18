@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  deployFrontEnd:
+   build:
     docker:
       image: circleci/classic:edge
     steps:
@@ -28,12 +28,6 @@ jobs:
       - run:
           name: heroku maintenance off
           command: heroku maintenance:off --app ${HEROKU_FRONT_APP_NAME}
-  deployBackEnd:
-    machine:
-      image: circleci/classic:edge
-    steps:
-      - checkout
-      # see: https://devcenter.heroku.com/articles/container-registry-and-runtime#using-a-ci-cd-platform
       - run:
           name: "build docker image"
           command: docker build --rm=false -t registry.heroku.com/${HEROKU_BACK_APP_NAME}/web .
