@@ -39,7 +39,6 @@
 <script>
 import flatPickr from 'vue-flatpickr-component'
 import 'flatpickr/dist/flatpickr.css'
-import axios from 'axios'
 
 export default {
   name: 'SearchBox',
@@ -94,7 +93,7 @@ export default {
     },
     request: function(params) {
       axios
-        .get('http://127.0.0.1:3100/api/v1/map', {
+        .$get('https://supodachi-backend.herokuapp.com/api/v1/map', {
           headers: {
             'Access-Control-Allow-Origin': '*',
             Authorization: 'Bearer ' + 'hogehoge'

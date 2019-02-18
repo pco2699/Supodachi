@@ -11,7 +11,8 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "debug": "node --inspect-brk=9229 node_modules/nuxt/bin/nuxt"
+    "debug": "node --inspect-brk=9229 node_modules/nuxt/bin/nuxt",
+    "heroku-postbuild": "yarn run build"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
