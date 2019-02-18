@@ -75,7 +75,7 @@ export default {
     this.request(params)
   },
   methods: {
-    inputLocation: function(text) {
+    inputLocation(text) {
       const params = {
         date: this.date,
         event: this.event,
@@ -83,7 +83,7 @@ export default {
       }
       this.request(params)
     },
-    changeDate: function(date) {
+    changeDate(date) {
       const params = {
         date: date,
         event: this.event,
@@ -91,8 +91,8 @@ export default {
       }
       this.request(params)
     },
-    request: function(params) {
-      axios
+    request(params) {
+      this.$axios
         .$get('https://supodachi-backend.herokuapp.com/api/v1/map', {
           headers: {
             'Access-Control-Allow-Origin': '*',
