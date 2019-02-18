@@ -8,13 +8,17 @@
     <div class="card-content">
       <div class="media">
         <div class="media-content">
-          <p class="title is-4">{{ name }}</p>
+          <p class="title is-4">
+            {{ name }}
+          </p>
         </div>
       </div>
       <div class="content">
         {{ description }}
         <br>
-        <time datetime="2016-1-1">{{ date_build }}</time>
+        <time datetime="2016-1-1">
+          {{ date_build }}
+        </time>
       </div>
     </div>
   </div>
@@ -25,7 +29,7 @@ export default {
   name: 'InfoWindow',
   props: {
     name: String,
-    date_build: String,
+    dateBuild: String,
     description: String
   }
 }

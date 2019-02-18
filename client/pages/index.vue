@@ -19,7 +19,7 @@
         @click.native="toggleMarker(i)"
       >
         <div class="marker">
-          <info-window class="info" v-if="marker.show" :name="marker.name" :description="marker.description" />
+          <info-window v-if="marker.show" class="info" :name="marker.name" :description="marker.description" />
           <Pin class="pin" />
         </div>
       </gmap-custom-marker>
