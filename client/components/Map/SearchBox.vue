@@ -4,11 +4,12 @@
       <v-ons-col>
         <img src="../../assets/pinB.png" width="15px" alt="">
         <v-ons-input
+          v-model="location"
           class="input station"
           placeholder="駅で検索"
           modifier="underbar"
           float
-          @keyup="inputLocation"
+          @keyup.enter="inputLocation(location)"
         />
       </v-ons-col>
     </v-ons-row>
@@ -19,14 +20,10 @@
         <img src="../../assets/S-gr.png" width="40px" alt="">
       </v-ons-col>
     </v-ons-row>
-    <v-ons-row>
-      {{ facilities }}
-    </v-ons-row>
     <v-ons-row class="search-item">
       <v-ons-col>
         <img src="../../assets/calendar.png" width="15px" alt="">
-        <!--<flat-pickr v-model="date" class="text-input&#45;&#45;underbar" @on-change="request" />-->
-        <flat-pickr v-model="date" class="text-input--underbar" @on-change="$emit('callSetPin')" />
+        <flat-pickr v-model="date" class="text-input--underbar" @on-change="changeDate" />
       </v-ons-col>
     </v-ons-row>
     <v-ons-row class="search-item">
@@ -52,8 +49,10 @@ export default {
   data() {
     return {
       selected: 0,
-      date: 'aaa',
+      date: new Date(),
+      event: 'tennis',
       facilities: null,
+      location: '田町駅',
       range: '50',
       stack: 0
     }
@@ -69,42 +68,42 @@ export default {
     }
   },
   mounted() {
-    this.request()
+    const params = {
+      date: this.date,
+      event: this.event,
+      location: this.location
+    }
+    this.request(params)
   },
   methods: {
-    inputLocation: function(location) {
-      this.date = location
-      this.request(location)
-      this.stack += 1 // 入力ごとに値を追加する
-      setTimeout(function() {
-        this.stack -= 1 // 中身を一つ取り出す
-        this.date = 'bbbbbbbbbbb'
-        if (this.stack === 0) {
-          this.date = 'cccccccccc'
-          this.request(location)
-          this.stack = 0 // 一応stackを初期化
-        }
-      }, 300)
+    inputLocation: function(text) {
+      const params = {
+        date: this.date,
+        event: this.event,
+        location: text
+      }
+      this.request(params)
     },
-    request: function() {
-      // let dateVal = new Date()
-      // if (pickedDate) dateVal = Date(pickedDate[0])
-      // if (pickedDate) dateVal = Date(pickedDate)
+    changeDate: function(date) {
+      const params = {
+        date: date,
+        event: this.event,
+        location: this.text
+      }
+      this.request(params)
+    },
+    request: function(params) {
       axios
         .get('http://127.0.0.1:3100/api/v1/map', {
           headers: {
             'Access-Control-Allow-Origin': '*',
             Authorization: 'Bearer ' + 'hogehoge'
           },
-          params: {
-            location: '田町駅',
-            date: this.date
-          }
+          params: params
         })
         .then(response => {
-          console.log(response.data.length)
-          this.facilities = response.data[0].lat
           for (let i = 0; i < response.data.length; i++) {
+            console.log(response.data[i].name)
             this.$emit('callSetPin', response.data[i])
           }
         })

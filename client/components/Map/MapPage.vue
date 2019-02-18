@@ -1,6 +1,6 @@
 <template>
   <v-ons-page>
-    <SearchBox @callSetPin="setPin" />
+    <SearchBox v-on:callSetPin="setPin" />
     <GmapMap
       ref="google_map"
       :center="currentLoc"
@@ -8,6 +8,7 @@
       map-type-id="terrain"
       style="width: 100%; height: 100%"
       :options="{disableDefaultUI: true, clickableIcons: false, gestureHandling: 'greedy'}"
+      @click="setPin"
     >
       <gmap-custom-marker :marker="currentLoc">
         <current-marker />
@@ -17,7 +18,7 @@
         :key="marker._id"
         :marker="marker"
         :alignment="marker.alignment"
-        @click="toggleInfoWindow(marker, i)"
+        @click.native="toggleInfoWindow(marker, i)"
       >
         <Pin />
       </gmap-custom-marker>
@@ -100,6 +101,7 @@ export default {
     toggleInfoWindow: function(marker, idx) {
       console.log('aaaaaaaaaa')
       this.infoWindowPos = marker.position
+      console.log(marker)
       this.infoContent = this.getInfoWindowContent(marker)
 
       // check if its the same marker that was selected if yes toggle
@@ -151,6 +153,9 @@ export default {
         weather: this.addWeather,
         alignment: 'top'
       })
+    },
+    test: function() {
+      console.log('test success')
     }
   }
 }
