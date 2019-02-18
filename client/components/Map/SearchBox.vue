@@ -71,7 +71,7 @@ export default {
     this.request()
   },
   methods: {
-    inputLocation: location => {
+    inputLocation(location) {
       this.date = location
       this.request(location)
       this.stack += 1 // 入力ごとに値を追加する
@@ -85,12 +85,12 @@ export default {
         }
       }, 300)
     },
-    request: () => {
+    request() {
       // let dateVal = new Date()
       // if (pickedDate) dateVal = Date(pickedDate[0])
       // if (pickedDate) dateVal = Date(pickedDate)
       this.$axios
-        .$get('/api/v1/map', {
+        .$get('https://supodachi-backend.herokuapp.com/api/v1/map', {
           headers: {
             'Access-Control-Allow-Origin': '*',
             Authorization: 'Bearer ' + 'hogehoge'
