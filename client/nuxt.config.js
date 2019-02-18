@@ -3,7 +3,7 @@ const pkg = require('./package')
 require('dotenv').config()
 
 module.exports = {
-  mode: 'universal',
+  mode: 'spa',
 
   /*
   ** Headers of the page
@@ -32,7 +32,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/vue-onsenui.js' },
+    { src: '~/plugins/vue-onsenui' },
     { src: '~/plugins/vue2-google-maps', ssr: true }
   ],
 
