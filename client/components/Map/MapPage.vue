@@ -8,7 +8,6 @@
       map-type-id="terrain"
       style="width: 100%; height: 100%"
       :options="{disableDefaultUI: true, clickableIcons: false, gestureHandling: 'greedy'}"
-      @click="setPin"
     >
       <gmap-custom-marker :marker="currentLoc">
         <current-marker />
@@ -145,7 +144,7 @@ export default {
       })
     },
     setPin(facility) {
-      console.log('ccc')
+      console.log('set pin.')
       this.markers.push({
         _id: this.ids++,
         latitude: facility.lat,

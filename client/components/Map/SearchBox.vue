@@ -101,9 +101,7 @@ export default {
           params: params
         })
         .then(response => {
-          console.log(response)
           for (let i = 0; i < response.length; i++) {
-            console.log(response[i].name)
             this.$emit('callSetPin', response[i])
           }
         })
