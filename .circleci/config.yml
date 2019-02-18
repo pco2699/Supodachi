@@ -21,7 +21,6 @@ jobs:
           command: |
             docker login --username=_ --password=$HEROKU__TOKEN registry.heroku.com
             docker push registry.heroku.com/${HEROKU_FRONT_APP_NAME}/web
-            heroku container:push web --app ${HEROKU_FRONT_APP_NAME}
             heroku container:release web --app ${HEROKU_FRONT_APP_NAME}
           working_directory: client/
       - run:
@@ -32,9 +31,6 @@ jobs:
           command: docker build --rm=false -t registry.heroku.com/${HEROKU_BACK_APP_NAME}/web .
           working_directory: server/
       - run:
-          name: setup heroku command
-          command: bash .circleci/setup_heroku.sh
-      - run:
           name: heroku maintenance on
           command: heroku maintenance:on --app ${HEROKU_BACK_APP_NAME}
       - run:
@@ -43,7 +39,6 @@ jobs:
           command: |
             docker login --username=_ --password=$HEROKU__TOKEN registry.heroku.com
             docker push registry.heroku.com/${HEROKU_BACK_APP_NAME}/web
-            heroku container:push web --app ${HEROKU_BACK_APP_NAME}
             heroku container:release web --app ${HEROKU_BACK_APP_NAME}
           working_directory: client/
       - run:
