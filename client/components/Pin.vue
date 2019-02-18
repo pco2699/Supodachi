@@ -1,5 +1,5 @@
 <template>
-  <img onclick="nextPage" src="../assets/map-icon.png">
+  <img src="../assets/map-icon.png" @click="nextPage">
 </template>
 
 <script>
