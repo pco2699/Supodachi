@@ -84,6 +84,7 @@ export default {
       }
       this.$emit('deleteAllMarker')
       this.$emit('request', params)
+      this.$emit('requestGeocoding', params.location)
     },
     changeDate(date) {
       const params = {

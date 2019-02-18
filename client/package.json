@@ -27,7 +27,8 @@
     "vue-flatpickr-component": "^8.1.1",
     "vue-onsenui": "^2.6.2",
     "vue2-gmap-custom-marker": "^5.3.1",
-    "vue2-google-maps": "^0.10.5"
+    "vue2-google-maps": "^0.10.5",
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",

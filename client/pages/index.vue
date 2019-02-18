@@ -36,7 +36,6 @@ import Pin from '../components/Map/Pin'
 import InfoWindow from '../components/Map/InfoWindow'
 
 export default {
-  name: 'MapPage',
   components: {
     CurrentMarker,
     GmapCustomMarker,
