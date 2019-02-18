@@ -57,7 +57,7 @@ export default {
     }
   },
   computed: {
-    timeRange: function() {
+    timeRange() {
       const range = Number(this.range)
       const time = range * 14.4
       const hours = Math.floor(time / 60)
@@ -72,7 +72,8 @@ export default {
       event: this.event,
       location: this.location
     }
-    this.request(params)
+    this.$emit('deleteAllMarker')
+    this.$emit('request', params)
   },
   methods: {
     inputLocation(text) {
@@ -81,7 +82,8 @@ export default {
         event: this.event,
         location: text
       }
-      this.request(params)
+      this.$emit('deleteAllMarker')
+      this.$emit('request', params)
     },
     changeDate(date) {
       const params = {
@@ -89,22 +91,8 @@ export default {
         event: this.event,
         location: this.text
       }
-      this.request(params)
-    },
-    request(params) {
-      this.$axios
-        .$get('https://supodachi-backend.herokuapp.com/api/v1/map', {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            Authorization: 'Bearer ' + 'hogehoge'
-          },
-          params: params
-        })
-        .then(response => {
-          for (let i = 0; i < response.length; i++) {
-            this.$emit('callSetPin', response[i])
-          }
-        })
+      this.$emit('deleteAllMarker')
+      this.$emit('request', params)
     }
   }
 }

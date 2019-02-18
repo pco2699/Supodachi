@@ -1,9 +1,9 @@
 <template>
-  <img src="../assets/map-icon.png" @click="nextPage">
+  <img src="../../assets/map-icon.png" @click="nextPage">
 </template>
 
 <script>
-import FacilityDetail from '../components/Detail/FacilityDetail'
+import FacilityDetail from '../Detail/FacilityDetail'
 
 export default {
   name: 'Pin',
