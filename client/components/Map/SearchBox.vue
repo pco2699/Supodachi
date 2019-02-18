@@ -101,9 +101,10 @@ export default {
           params: params
         })
         .then(response => {
-          for (let i = 0; i < response.data.length; i++) {
-            console.log(response.data[i].name)
-            this.$emit('callSetPin', response.data[i])
+          console.log(response)
+          for (let i = 0; i < response.length; i++) {
+            console.log(response[i].name)
+            this.$emit('callSetPin', response[i])
           }
         })
     }

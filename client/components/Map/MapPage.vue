@@ -1,6 +1,6 @@
 <template>
   <v-ons-page>
-    <SearchBox v-on:callSetPin="setPin" />
+    <SearchBox @callSetPin="setPin" />
     <GmapMap
       ref="google_map"
       :center="currentLoc"
