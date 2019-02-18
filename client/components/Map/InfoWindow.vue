@@ -28,9 +28,18 @@
 export default {
   name: 'InfoWindow',
   props: {
-    name: String,
-    dateBuild: String,
-    description: String
+    name: {
+      type: String,
+      default: '施設'
+    },
+    dateBuild: {
+      type: String,
+      default: ''
+    },
+    description: {
+      type: String,
+      default: ''
+    }
   }
 }
 </script>

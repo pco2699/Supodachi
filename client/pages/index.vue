@@ -36,6 +36,7 @@ import Pin from '../components/Map/Pin'
 import InfoWindow from '../components/Map/InfoWindow'
 
 export default {
+  name: 'Map',
   components: {
     CurrentMarker,
     GmapCustomMarker,
@@ -71,11 +72,6 @@ export default {
           height: -35
         }
       }
-    }
-  },
-  computed: {
-    src() {
-      return this.testText ? this.testText : 'https://vuejs.org/images/logo.png'
     }
   },
   created() {
