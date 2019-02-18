@@ -49,6 +49,8 @@ module.exports = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    baseURL: process.env.API_URL || 'http://localhost:3101/',
+    https: true
   },
 
   env: { map_apikey: process.env.MAP_APIKEY },
